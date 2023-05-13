@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Ninja.hpp"
 
 using namespace std;
@@ -22,28 +21,5 @@ namespace ariel
         string print() const override;
 
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

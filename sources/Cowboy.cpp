@@ -4,7 +4,7 @@ using namespace ariel;
 
 string Cowboy::print() const
 {
-    return "print";
+    return "maya";
 }
 
 bool Cowboy::hasBullets() const

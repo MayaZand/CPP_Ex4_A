@@ -4,7 +4,7 @@ using namespace ariel;
 
 bool Character::isAlive()
 {
-
+    return true;
 }
 
 double Character::distance(Character& other)

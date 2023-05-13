@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "Point.hpp"
 
@@ -17,8 +18,8 @@ namespace ariel
     public:
     /* counstructor: */
 
-        Character(string characterName, Point& location, int hitPoint) : characterName(characterName), location(location), hitPoint(hitPoint) {}
-        virtual ~Character() = default;
+    Character(string characterName, Point& location, int hitPoint) : characterName(characterName), location(location), hitPoint(hitPoint) {}
+    virtual ~Character() = default;
 
     /* methods: */
 
