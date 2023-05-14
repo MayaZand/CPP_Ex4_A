@@ -26,3 +26,8 @@ Point Character::getLocation()
 {
     return this->location;
 }
+
+int Character::getHitPoints()
+{
+    return this->hitPoint;
+}

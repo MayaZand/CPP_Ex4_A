@@ -23,6 +23,23 @@ namespace ariel
 
     /* methods: */
 
+    /* getters: */
+
+    /*
+    @return the character's name.
+    */
+    string getName();
+
+    /*
+    @return the character's location
+    */
+    Point getLocation();
+
+    /*
+    @return the number of the character's hitpoints
+    */
+    int getHitPoints();
+
     /*
     @return true if the character is alive, and false otherwise.
     */
@@ -40,15 +57,7 @@ namespace ariel
     */
     void hit(int num);
 
-    /*
-    @return the character's name.
-    */
-    string getName();
 
-    /*
-    @return the character's location
-    */
-    Point getLocation();
 
     /*
     this method prints the name of the character, the number of its hit points, and the point where the character is.

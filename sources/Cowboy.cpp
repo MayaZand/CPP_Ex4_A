@@ -2,6 +2,11 @@
 
 using namespace ariel;
 
+int Cowboy::getNumOfBullets()
+{
+    return this->numOfBullets;
+}
+
 string Cowboy::print() const
 {
     return "Cowboy";

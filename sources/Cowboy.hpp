@@ -9,7 +9,7 @@ namespace ariel
     class Cowboy : public Character
     {
         /* fields - private by default: */
-        int numOfBalls = 6;
+        int numOfBullets = 6;
 
         /*constructor & destructor: */
         public:
@@ -26,6 +26,13 @@ namespace ariel
         string print() const override;
 
         /* methods: */
+
+        /* getters: */
+
+        /*
+        @return the cowboy's num of bullets
+        */
+        int getNumOfBullets();
 
         /*
         @return true if the cowboy's gun still has bullets, and false otherwise.
