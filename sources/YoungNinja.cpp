@@ -4,5 +4,5 @@ using namespace ariel;
 
 string YoungNinja::print() const
 {
-    return "print";
+    return "YoungNinja";
 }

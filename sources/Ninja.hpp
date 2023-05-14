@@ -41,18 +41,5 @@ namespace ariel
     */
     void slash(const Character* enemy);
 
-
-
     };
-
-
-
-
-
-
-
-
-
-
-
 }

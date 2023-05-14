@@ -14,12 +14,5 @@ namespace ariel
         */
         virtual void print() override;
 
-
-
-
-
-
-
-
     };
 }

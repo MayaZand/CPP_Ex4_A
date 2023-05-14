@@ -24,21 +24,22 @@ int main() {
     OldNinja *sushi = new OldNinja("sushi", b);
     tom->shoot(sushi);
     cout << tom->print() <<endl;
-    cout << "hello" << endl;
+    cout << "hello1" << endl;
 
     sushi->move(tom);
     sushi->slash(tom);
-    cout << "hello" << endl;
+    cout << "hello2" << endl;
 
 
     Team team_A(tom); 
     team_A.add(new YoungNinja("Yogi", Point(64,57)));
-   cout << "hello" << endl;
+    cout << "hello3" << endl;
 
     // Team b(tom); should throw tom is already in team a
 
      Team team_B(sushi);
      team_B.add(new TrainedNinja("Hikari", Point(12,81)));
+     cout << "hello4" << endl;
 
 
      while(team_A.stillAlive() > 0 && team_B.stillAlive() > 0){
@@ -47,6 +48,7 @@ int main() {
         team_A.print();
         team_B.print();
      }
+      cout << "hello5" << endl;
 
      if (team_A.stillAlive() > 0) cout << "winner is team_A" << endl;
      else cout << "winner is team_B" << endl;

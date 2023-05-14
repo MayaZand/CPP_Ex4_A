@@ -4,7 +4,7 @@ using namespace ariel;
 
 string Ninja::print() const
 {
-    return "print";
+    return "Ninja";
 }
 
 void Ninja::move(const Character* enemy)

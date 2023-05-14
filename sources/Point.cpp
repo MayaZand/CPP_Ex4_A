@@ -9,7 +9,7 @@ double Point:: distance (Point p)
 
 void Point:: print()
 {
-
+    
 }
 
 Point Point:: moveTowards (Point& srcPoint, Point& destPoint, double distance)
