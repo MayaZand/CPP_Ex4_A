@@ -58,20 +58,20 @@ TEST_CASE("check the isAlive() method")
     CHECK(n2.isAlive() == true);
     CHECK(n3.isAlive() == true);
 
-    // after fighting, n1 is alive and c is dead
-    while (n1.isAlive())
-    {
-        n1.slash(&c);
-    }
+                                    // after fighting, n1 is alive and c is dead
+                                    // while (n1.isAlive())
+                                    // {
+                                    //     n1.slash(&c);
+                                    // }
     
     CHECK(c.isAlive() == false);
     CHECK(n1.isAlive() == true);
 
-    // after fighting, n2 is alive and n3 is dead
-    while (n2.isAlive())
-    {
-        n2.slash(&n3);
-    }
+                                    // after fighting, n2 is alive and n3 is dead
+                                    // while (n2.isAlive())
+                                    // {
+                                    //     n2.slash(&n3);
+                                    // }
 
     CHECK(n3.isAlive() == false);
     CHECK(n2.isAlive() == true);
@@ -222,7 +222,17 @@ TEST_CASE("check the reload() method")
 
 TEST_CASE("check the move() method")
 {
-    //TODO
+    Point ninjaPoint(0,0), cowboyPoint(8,8);
+    YoungNinja yn ("YoungNinja", ninjaPoint);
+    Cowboy* cb = new Cowboy("Cowboy3", cowboyPoint);
+
+    yn.move(cb);
+
+    // save the new point after calling move() method: 
+    Point destPoint = yn.getLocation(); 
+
+    CHECK((ninjaPoint.distance(destPoint) == yn.getSpeed()));
+
 }
 
 TEST_CASE("check the slash() method")
@@ -296,9 +306,42 @@ TEST_CASE("check the add() method")
 
 TEST_CASE("check the attack() method")
 {
+    Point point1 (1,1), point2(2,2), point3(3,3), point4(4,4), point5(5,5), point6(6,6);
+    Point point7(7,7), point8(8,8), point9(9,9), point10(10,10), point11(11,11);
+
+    Cowboy *cowboy1 = new Cowboy("cowboy1", point1);
+    Cowboy *cowboy2 = new Cowboy("cowboy2", point2);
+    Cowboy *cowboy3 = new Cowboy("cowboy3", point3);
+    Cowboy *cowboy4 = new Cowboy("cowboy4", point4);
+    Cowboy *cowboy5 = new Cowboy("cowboy5", point5);
+    OldNinja* oldNinja1 = new OldNinja("oldNinja1",point6);
+    OldNinja* oldNinja2 = new OldNinja("oldNinja2",point7);
+    YoungNinja* youngNinja1 = new YoungNinja("youngNinja1",point8);
+    YoungNinja* youngNinja2= new YoungNinja("youngNinja2",point9);
+    TrainedNinja* trainedNinja1 = new TrainedNinja("trainedNinja1",point10);
+    TrainedNinja* trainedNinja2 = new TrainedNinja("trainedNinja2",point11);
+
+    // create new Teams
+    Team team1(cowboy1);
+    Team2 team2(oldNinja1);
+
+    // add warriors to the team1 and team2
+    team1.add(cowboy2);
+    team1.add(cowboy3);
+    team1.add(youngNinja1);
+    team1.add(trainedNinja1);
     
+    team2.add(cowboy4);
+    team2.add(cowboy5);
+    team2.add(oldNinja2);
+    team2.add(youngNinja2);
+    team2.add(trainedNinja2);
 
+    while (team1.stillAlive())
+    {
+        team1.attack(&team2);
+    }
 
-
+    CHECK(team2.stillAlive() == 0);
 
 }
