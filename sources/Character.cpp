@@ -22,7 +22,7 @@ string Character::getName()
     return this->characterName;
 }
 
-Point Character::getLocation()
+Point& Character::getLocation()
 {
     return this->location;
 }

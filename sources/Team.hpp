@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "Cowboy.hpp"
 #include "YoungNinja.hpp"
@@ -13,7 +14,7 @@ namespace ariel
     class Team
     {
 
-        /* fields - private by default: */
+        protected:
         Character* leader;
         vector <Character*> warriors;
 
@@ -22,8 +23,15 @@ namespace ariel
         Team(Character* leader) : leader(leader), warriors() {};
         ~Team() = default;
 
-        /* methods: */
- 
+        /* METHODS: */
+
+        /* getters: */
+
+        /*
+        @return the size of the team (vector)
+        */
+        int getTeamSize();
+        
         /*
         This method adds a cowboy or ninja to the group.
         */

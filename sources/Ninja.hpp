@@ -10,7 +10,7 @@ namespace ariel
     class Ninja : public Character
     {
     
-    /* fields - private by default: */
+    protected:
     int speed;
 
     /* constructor & destructor: */
@@ -29,10 +29,17 @@ namespace ariel
 
     /* methods: */
 
+    /*getters: */
+
+    /*
+    @return the Ninja's speed.
+    */
+    int getSpeed();
+
     /*
     this method gets a pointer to the enemy and moves towards the enemy. The ninja advances a distance equal to its speed.
     */
-    void move(const Character* enemy);
+    void move(Character* enemy);
 
     /*
     this method gets a pointer to the enemy. 

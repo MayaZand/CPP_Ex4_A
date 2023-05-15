@@ -2,6 +2,11 @@
 
 using namespace ariel;
 
+int Team::getTeamSize()
+{
+    return warriors.size();
+}
+
 void Team::add(Character* newCharacter)
 {
 

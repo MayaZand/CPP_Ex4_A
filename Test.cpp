@@ -1,6 +1,8 @@
 #include "doctest.h"
 #include <stdexcept>
 #include "sources/Team.hpp"
+#include "sources/Team2.hpp"
+#include "sources/SmartTeam.hpp"
 
 using namespace std;
 using namespace ariel;
@@ -11,14 +13,14 @@ TEST_CASE("create new point")
     CHECK_NOTHROW(Point(1.1,2.2));
 }
 
-TEST_CASE("check distance method")
+TEST_CASE("check the distance() method")
 {
     Point p1(0,0), p2(2,0);
     CHECK(p1.distance(p2) == 2);
     CHECK(p2.distance(p1) == 2);
 }
 
-TEST_CASE("check moveTowards method")
+TEST_CASE("check the moveTowards() method")
 {
     Point srcPoint1(0,0), destPoint1(8,0);
     Point finalDest(Point::moveTowards(srcPoint1, destPoint1, 3));
@@ -42,7 +44,7 @@ TEST_CASE("check moveTowards method")
     CHECK(finalDest4.getY() == 0);
 }
 
-TEST_CASE("check isAlive method in Ninja and cowboy class")
+TEST_CASE("check the isAlive() method")
 {
     Point a(0,0);
     Cowboy c ("cowboy1", a);
@@ -75,7 +77,7 @@ TEST_CASE("check isAlive method in Ninja and cowboy class")
     CHECK(n2.isAlive() == true);
 }
 
-TEST_CASE("check the distance between two characters")
+TEST_CASE("check the distance() between two characters method")
 {
     Point NinjaPoint (0,0);
     OldNinja on ("oldNinja", NinjaPoint);
@@ -85,7 +87,7 @@ TEST_CASE("check the distance between two characters")
     CHECK(on.distance(cb) == 2); 
 }
 
-TEST_CASE("check the hit method")
+TEST_CASE("check the hit() method")
 {
     Point point (0,0);
     OldNinja on ("oldNinja", point);
@@ -146,8 +148,9 @@ TEST_CASE("check the getLocation() method")
     CHECK(cb.getLocation().getY() == 0);
 }
 
-TEST_CASE("check shoot method")
+TEST_CASE("check shoot() method")
 {
+    // if the cowboy is not dead and still have bullets:
     Point point (0,0);
     OldNinja on ("oldNinja", point);
     Cowboy cb1 ("Cowboy1", point);
@@ -156,8 +159,146 @@ TEST_CASE("check shoot method")
     cb1.shoot(&on);
     cb1.shoot(&cb2);
 
-    CHECK(on.getHitPoints() == 140);
-    CHECK(cb1.getNumOfBullets() == 5);
+    CHECK(on.getHitPoints() == 140); // 150 hit points -10 hit points after being shot
+    CHECK(cb1.getNumOfBullets() == 5); 
     CHECK(cb1.getNumOfBullets() == 4);
-    CHECK(cb2.getHitPoints() == 110);
+    CHECK(cb2.getHitPoints() == 100); // 110 hit points -10 hit points after being shot
+
+    // if the cowboy is not dead and doesnt have bullets:
+    Point point2 (0,0);
+    OldNinja on2 ("oldNinja", point);
+    Cowboy cb3 ("Cowboy3", point);
+    Cowboy cb4 ("Cowboy4", point);
+
+    for (int i=0; i<6; i++)
+    {
+        cb1.shoot(&on); 
+    }
+    
+    CHECK(on.getHitPoints() == 90); // -10 hitPoints * 6 shootings ---> 150 hitPoints - 60 = 90
+    CHECK(cb1.getNumOfBullets() == 0);
+
+    cb1.shoot(&on); // at this point, the cowboy ran out of bullets so the number of the ninja's hit points should stay the same.
+    
+    CHECK(on.getHitPoints() == 90);
+}
+
+TEST_CASE("check the hasBullets() method")
+{
+    Point point (0,0);
+    Cowboy cb1 ("Cowboy1", point);
+    Cowboy cb2 ("Cowboy2", point);
+
+    // once a cowboy is created he should have bullets
+    CHECK(cb1.hasBullets() == true);
+    CHECK(cb2.hasBullets() == true);
+
+    // after the cowboy shoots 6 times he runs out of bullets
+    for (int i=0; i<6; i++)
+    {
+        cb1.shoot(&cb2);
+    }
+    
+    CHECK(cb1.hasBullets() == false);
+    CHECK(cb1.getNumOfBullets() == 0);
+}
+
+TEST_CASE("check the reload() method")
+{
+    Point point (0,0);
+    Cowboy cb1 ("Cowboy1", point);
+    Cowboy cb2 ("Cowboy2", point);
+
+    // after the cowboy shoots 6 times he runs out of bullets
+    for (int i=0; i<6; i++)
+    {
+        cb1.shoot(&cb2);
+    }
+    cb1.reload();
+
+    CHECK(cb1.hasBullets() == true);
+    CHECK(cb1.getNumOfBullets() == true);
+}
+
+TEST_CASE("check the move() method")
+{
+    //TODO
+}
+
+TEST_CASE("check the slash() method")
+{
+    // if the enemy is less than 1 meter away:
+    Point point (0,0);
+    OldNinja on ("oldNinja", point);
+    YoungNinja yn ("YoungNinja", point);
+    Cowboy cb ("Cowboy", point);
+
+    on.slash(&yn);
+    on.slash(&cb);
+
+    CHECK(yn.getHitPoints() == 60);
+    CHECK(cb.getHitPoints() == 70);
+
+    // if the enemy is more than 1 meter away - no damage is done:
+    Point point2 (100,100);
+    OldNinja on2 ("oldNinja", point);
+    YoungNinja yn2 ("YoungNinja", point2);
+    Cowboy cb2 ("Cowboy", point2);
+
+    on2.slash(&yn2);
+    on2.slash(&cb2);
+
+    CHECK(yn.getHitPoints() == 100);
+    CHECK(cb.getHitPoints() == 110);
+}
+
+TEST_CASE("check the expected conditions in each of all character type constructors") 
+{
+    Point point (100,100);
+    OldNinja on ("oldNinja", point); // suppose to be with 150 HP and speed=8
+    YoungNinja yn ("YoungNinja", point); // suppose to be with 100 HP and speed=14
+    TrainedNinja tn ("TrainedNinja", point); // suppose to be with 120 HP and speed=12
+    Cowboy cb ("Cowboy", point); // suppose to be with 110 HP and 6 bullets
+
+    CHECK(on.getHitPoints() == 150);
+    CHECK(yn.getHitPoints() == 100);
+    CHECK(tn.getHitPoints() == 120);
+    CHECK(on.getSpeed() == 8);
+    CHECK(yn.getSpeed() == 14);
+    CHECK(tn.getSpeed() == 12);
+    CHECK(cb.getNumOfBullets() == 6);
+    CHECK(cb.getHitPoints() == 110);
+}
+
+TEST_CASE("check the add() method") 
+{
+    Point point (0,0);
+    Cowboy *cowboy1 = new Cowboy("cowboy1", point);
+    Cowboy *cowboy2 = new Cowboy("cowboy2", point);
+    OldNinja* oldNinja = new OldNinja("oldNinja",point);
+    YoungNinja* youngNinja = new YoungNinja("youngNinja",point);
+    TrainedNinja* trainedNinja = new TrainedNinja("trainedNinja",point);
+
+    // create new Teams
+    Team team1(cowboy1);
+    Team2 team2(cowboy2);
+    SmartTeam team3(youngNinja);
+
+    // add warriors to the team
+    team1.add(oldNinja);
+    team1.add(trainedNinja);
+    team2.add(youngNinja);
+
+    CHECK(team1.getTeamSize() == 3);
+    CHECK(team2.getTeamSize() == 2);
+    CHECK(team3.getTeamSize() == 1);
+}
+
+TEST_CASE("check the attack() method")
+{
+    
+
+
+
+
 }
