@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 namespace ariel
 {
 
@@ -10,11 +9,13 @@ namespace ariel
     {
         /* fields - private by default: */
         int numOfBullets = 6;
+    
+    public:
+        /*constructor: */
 
-        /*constructor & destructor: */
-        public:
-        Cowboy(string name, Point& point) : Character(name, point, 110) {} 
-        ~Cowboy() = default;
+        Cowboy(string name, Point &point) : Character(name, point, 110) {}
+
+        /* METHODS: */
 
         /* override methods: */
 
@@ -24,8 +25,6 @@ namespace ariel
         Before the name will appear a letter indicating the type of character: N for ninja and C for cowboy.
         */
         string print() const override;
-
-        /* methods: */
 
         /* getters: */
 
@@ -43,7 +42,7 @@ namespace ariel
         this method will subtract 10 hit points from the enemy if the cowboy is not dead and has bullets left,
         he shoots the enemy and loses 1 bullet. otherwise, no damage will be done to the enemy.
         */
-        void shoot(Character* other);
+        void shoot(Character *other);
 
         /*
         this method loads the gun with six new bullets.

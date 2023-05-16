@@ -14,13 +14,13 @@ namespace ariel
     class Team
     {
 
-        protected:
+    protected:
         Character* leader;
-        vector <Character*> warriors;
+        vector<Character*> warriors;
 
-        public:
+    public:
         /* constructor & destructor: */
-        Team(Character* leader) : leader(leader), warriors() {};
+        Team(Character* leader) : leader(leader), warriors(){};
         ~Team() = default;
 
         /* METHODS: */
@@ -31,14 +31,16 @@ namespace ariel
         @return the size of the team (vector)
         */
         int getTeamSize();
-        
+
         /*
         This method adds a cowboy or ninja to the group.
+        @param newCharacter is the pointer to the character that is added to the group.
         */
         void add(Character* newCharacter);
 
         /*
         this method performs the attack between 2 groups.
+        @param enemys is the pointer to the enemys Team.
         */
         virtual void attack(Team* enemys);
 
@@ -48,23 +50,9 @@ namespace ariel
         int stillAlive();
 
         /*
-        this method prints all details of the group members. 
+        this method prints all details of the group members.
         */
         virtual void print();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     };
 
 }

@@ -58,20 +58,20 @@ TEST_CASE("check the isAlive() method")
     CHECK(n2.isAlive() == true);
     CHECK(n3.isAlive() == true);
 
-                                    // after fighting, n1 is alive and c is dead
-                                    // while (n1.isAlive())
-                                    // {
-                                    //     n1.slash(&c);
-                                    // }
+    // after fighting, n1 is alive and c is dead
+    while (n1.isAlive())
+    {
+        n1.slash(&c);
+    }
     
     CHECK(c.isAlive() == false);
     CHECK(n1.isAlive() == true);
 
-                                    // after fighting, n2 is alive and n3 is dead
-                                    // while (n2.isAlive())
-                                    // {
-                                    //     n2.slash(&n3);
-                                    // }
+    // after fighting, n2 is alive and n3 is dead
+    while (n2.isAlive())
+    {
+        n2.slash(&n3);
+    }
 
     CHECK(n3.isAlive() == false);
     CHECK(n2.isAlive() == true);

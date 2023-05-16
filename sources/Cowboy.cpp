@@ -17,12 +17,12 @@ bool Cowboy::hasBullets() const
     return false;
 }
 
-void Cowboy::shoot(Character* other)
+void Cowboy::shoot(Character *other)
 {
 
 }
 
 void Cowboy::reload()
 {
-
+    
 }

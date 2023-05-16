@@ -7,11 +7,15 @@ namespace ariel
 
     class YoungNinja : public Ninja
     {
-        /*constructor & destructor: */
-        public:
-        
-        YoungNinja(string name ,Point location) : Ninja(name, location, 100, 14) {}
-        ~YoungNinja() = default;
+    
+    public:
+        /* constructor: */
+
+        YoungNinja(string name, Point location) : Ninja(name, location, 100, 14) {}
+
+        /* METHODS: */
+
+        /* override methods: */
 
         /*
         this method prints the name of the character, the number of its hit points, and the point where the character is.
@@ -19,7 +23,6 @@ namespace ariel
         Before the name will appear a letter indicating the type of character: N for ninja and C for cowboy.
         */
         string print() const override;
-
     };
 
 }

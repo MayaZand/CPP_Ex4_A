@@ -4,17 +4,17 @@ using namespace ariel;
 
 bool Character::isAlive()
 {
-    return true;
+    return false;
 }
 
-double Character::distance(Character& other)
+double Character::distance(Character &other)
 {
     return 1.1;
 }
 
 void Character::hit(int num)
 {
-
+    
 }
 
 string Character::getName()
@@ -22,7 +22,7 @@ string Character::getName()
     return this->characterName;
 }
 
-Point& Character::getLocation()
+Point &Character::getLocation()
 {
     return this->location;
 }

@@ -9,19 +9,18 @@ namespace ariel
     class Character
     {
 
-        protected:
+    protected:
         string characterName;
         Point& location;
         int hitPoint;
 
+    public:
+        /* counstructor & destructor: */
 
-        public:
-        /* counstructor: */
-
-        Character(string characterName, Point& location, int hitPoint) : characterName(characterName), location(location), hitPoint(hitPoint) {}
+        Character(string characterName, Point &location, int hitPoint) : characterName(characterName), location(location), hitPoint(hitPoint) {}
         virtual ~Character() = default;
 
-        /* methods: */
+        /* METHODS: */
 
         /* getters: */
 
@@ -46,10 +45,10 @@ namespace ariel
         bool isAlive();
 
         /*
-        @param other is the other character.
         @return the distance between the two characters.
+        @param other is the other character.
         */
-        double distance(Character& other);
+        double distance(Character &other);
 
         /*
         this method subtracts the amount of hit points from the character.
@@ -63,6 +62,5 @@ namespace ariel
         Before the name will appear a letter indicating the type of character: N for ninja and C for cowboy.
         */
         virtual string print() const = 0;
-
     };
 }
